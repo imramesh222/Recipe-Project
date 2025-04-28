@@ -1,0 +1,30 @@
+{% extends 'recipes/base.html' %}
+{% block content %}
+
+<h1 class="text-3xl font-bold mb-6">All Recipes</h1>
+
+<form method="GET" class="mb-6 flex gap-4">
+    <input type="text" name="q" placeholder="Search..." class="p-2 border rounded w-1/2">
+    <select name="category" class="p-2 border rounded">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded">Search</button>
+</form>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {% for recipe in recipes %}
+    <div class="bg-white shadow-md rounded p-4">
+        {% if recipe.image %}
+            <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="h-40 w-full object-cover mb-4 rounded">
+        {% endif %}
+        <h2 class="text-xl font-semibold">{{ recipe.title }}</h2>
+        <p class="text-gray-600">{{ recipe.cooking_time }} min</p>
+        <a href="{% url 'recipe_detail' recipe.pk %}" class="text-indigo-600 mt-2 inline-block">View Recipe</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

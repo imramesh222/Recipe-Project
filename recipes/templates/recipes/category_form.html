@@ -1,0 +1,19 @@
+{% extends 'recipes/base.html' %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <h1 class="text-xl font-bold text-indigo-600">Add New Category</h1>
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Category</button>
+    </form>
+
+    <!-- Button to show all categories -->
+    <div class="mt-6">
+        <a href="{% url 'category_list' %}" class="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+            Show All Categories
+        </a>
+    </div>
+</div>
+{% endblock %}

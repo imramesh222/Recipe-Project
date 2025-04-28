@@ -1,0 +1,25 @@
+{% extends 'recipes/base.html' %}
+{% block content %}
+
+<h1 class="text-3xl font-bold mb-4">{{ recipe.title }}</h1>
+
+{% if recipe.image %}
+<img src="{{ recipe.image.url }}" class="w-full max-h-96 object-cover rounded mb-4">
+{% endif %}
+
+<p class="mb-4"><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+
+<h2 class="text-2xl font-bold mb-2">Ingredients</h2>
+<p class="mb-4">{{ recipe.ingredients }}</p>
+
+<h2 class="text-2xl font-bold mb-2">Instructions</h2>
+<p class="mb-4">{{ recipe.instructions }}</p>
+
+{% if user == recipe.created_by %}
+    <div class="flex gap-4 mt-4">
+        <a href="{% url 'recipe_edit' recipe.pk %}" class="bg-yellow-400 px-4 py-2 rounded text-white">Edit</a>
+        <a href="{% url 'recipe_delete' recipe.pk %}" class="bg-red-500 px-4 py-2 rounded text-white">Delete</a>
+    </div>
+{% endif %}
+
+{% endblock %}

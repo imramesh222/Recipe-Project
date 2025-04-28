@@ -1,0 +1,14 @@
+{% extends 'recipes/base.html' %}
+{% block content %}
+
+<h1 class="text-3xl font-bold mb-6">{{ form.instance.pk|yesno:"Edit Recipe,Add Recipe" }}</h1>
+
+<form method="POST" enctype="multipart/form-data" class="space-y-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">
+        Save Recipe
+    </button>
+</form>
+
+{% endblock %}
